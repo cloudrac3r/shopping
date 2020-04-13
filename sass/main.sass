@@ -1,0 +1,336 @@
+$bg-main: #dedbd9
+$bg-disabled: #e8e5e4
+$bg-bright: #fff
+$fg-main: #111
+$fg-soft-edge: #ccc
+
+$gap-size: 15px
+$gap-size-medium: 8px
+$gap-size-tiny: 3px
+$radius-large: 8px
+$radius-small: 4px
+
+$layout-a-min-width: 700px
+$layout-b-max-width: 699px
+
+body
+	font-family: sans-serif
+	font-size: 20px
+	background-color: $bg-main
+	color: $fg-main
+	min-height: 100vh
+	margin: 0
+	padding: 0
+	@media only screen and (min-width: $layout-a-min-width)
+		display: grid
+
+	@media only screen and (max-width: $layout-b-max-width)
+		overflow-y: scroll
+
+input, button
+	font-family: inherit
+	font-size: inherit
+	border: 1px solid $fg-soft-edge
+	border-radius: $radius-small
+	background-color: $bg-bright
+	padding: 8px
+
+	&::placeholder
+		font-style: italic
+
+hr
+	border: none
+	border-bottom: 1px solid #b4b4b4
+	padding: 0
+	margin: 18px 20px
+
+button
+	&:disabled
+		background-color: $bg-disabled
+
+	&:not(:disabled)
+		cursor: pointer
+
+		&.complete
+			border-color: #999
+			background-color: #8b7
+
+		&:hover
+			border-color: #aaa
+			background: linear-gradient(to bottom, #fff 20%, #eee)
+			box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2)
+
+			&.complete
+				border-color: #777
+				background: linear-gradient(to bottom, #8b7, #7a6)
+
+		&:active
+			border-color: #888
+			background: linear-gradient(to bottom, #eee, #fff)
+			box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.2) inset
+
+			&.complete
+				background: linear-gradient(to top, #8b7, #7a6)
+				box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25) inset
+
+		&:focus::-moz-focus-inner
+			padding: 2px
+			border-color: rgba(0, 0, 0, 0.3)
+			border-style: dashed
+
+ul
+	margin: 0
+	padding: 0
+
+.columns
+	box-sizing: border-box
+	display: grid
+	// grid-template-columns: 2fr 1fr
+	grid-gap: $gap-size
+	padding: $gap-size
+
+	@media only screen and (min-width: $layout-a-min-width)
+		grid-template-columns: 1fr 1fr
+		height: 100vh
+
+	@media only screen and (max-width: $layout-b-max-width)
+		.item-selection-container
+			order: 2
+
+=button-list
+	list-style-type: none
+	display: grid
+	grid-gap: $gap-size-tiny
+
+	li
+		display: flex
+
+		button
+			text-align: left
+			flex: 1
+
+.main-section
+	padding: $gap-size-medium
+	border: 1px solid $fg-soft-edge
+	border-radius: 8px
+	background-color: $bg-main
+	box-shadow: 0px 4px 12px -2px rgba(0, 0, 0, 0.6)
+	overflow-y: scroll
+
+	.section-bottom-padding
+		height: $gap-size-medium
+
+.item-selection-container
+	padding: 0px
+
+	.sticky-search
+		padding: 8px 8px 0px
+		background-color: $bg-main
+		position: sticky
+		top: 0
+
+	.search-container
+		display: flex
+
+		.search-box
+			flex: 1
+
+	.item-selection
+		+button-list
+		margin: 5px 10px 10px
+
+		&.outlined
+			padding: 3px
+			margin: 0px 5px 5px
+			border: 2px solid
+			border-radius: $radius-large
+
+		.item-line
+			display: flex
+
+			.name
+				flex: 1
+
+			.price
+				font-style: italic
+				color: maroon
+
+	.create-item-area
+		padding: 0px 8px
+
+		.create-item-container
+			display: grid
+			grid-template-columns: auto auto 1fr
+			grid-gap: $gap-size-tiny
+
+			.item-setting-input
+				width: 85px
+
+			.create-item
+				text-align: start
+
+.item-list
+	+button-list
+
+	.item-list-button
+		display: flex
+
+		.tag
+			width: 8px
+			position: relative
+
+			&.hidden
+				display: none
+
+			.tag-inner
+				position: absolute
+				top: -8px
+				left: -8px
+				bottom: -8px
+				right: 6px
+				border-radius: $radius-small - 2 0px 0px $radius-small - 2
+
+		.name
+			flex: 1
+
+		.quantity
+			font-style: italic
+			color: #008
+
+		.aisle
+			margin-right: 8px
+			font-style: italic
+			color: #060
+
+.context-menu-overlay
+	position: fixed
+	top: 0
+	left: 0
+	bottom: 0
+	right: 0
+
+	&.hidden
+		display: none
+
+=unclickable-tile
+	background-color: $bg-bright
+	padding: 8px
+	border: 1px solid $fg-soft-edge
+	border-radius: $radius-small
+
+.context-menu
+	position: fixed
+	width: 215px
+	border-radius: 0px $radius-large $radius-large $radius-large
+	box-shadow: 0px 4px 12px 6px rgba(0, 0, 0, 0.6)
+
+	.menu-list
+		display: flex
+		flex-direction: column
+
+		.menu-item
+			display: flex
+
+			.menu-label
+				+unclickable-tile
+				background-color: $bg-main
+				border: 1px solid #346ebb
+				border-left-width: 10px
+				line-height: 1.3
+
+			.menu-button, .menu-label
+				flex: 1
+				border-radius: 0px
+				text-align: left
+				white-space: pre-line
+
+			.menu-button
+				border-bottom-width: 0px
+
+			&:first-child
+				.menu-button, .menu-label
+					border-radius: 0px $radius-large 0px 0px
+
+			&:last-child
+				.menu-button, .menu-label
+					border-radius: 0px 0px $radius-large $radius-large
+					border-bottom-width: 1px
+
+.default-tag-flex
+	display: flex
+	align-items: center
+
+	hr
+		flex: 1
+
+	.tag
+		$margin: 4px
+		$width: 18px
+
+		cursor: pointer
+		width: $width
+		height: $width
+		border-radius: 50%
+		display: flex
+		justify-content: center
+		background-color: white
+		align-items: center
+		margin: $margin
+
+		.tag-inner
+			width: $width
+			height: $width
+			border-radius: 50%
+
+		&.selected
+			width: $width - 2px
+			height: $width - 2px
+			border: 1px solid black
+
+			.tag-inner
+				width: $width - 4px
+				height: $width - 4px
+
+.summary
+	+unclickable-tile
+	line-height: 1.3
+	position: relative
+	white-space: pre-line
+	margin-bottom: $gap-size-medium
+
+	.prices
+		line-height: 1.17
+
+	.border
+		color: #000
+
+.progress
+	position: absolute
+	bottom: 0
+	left: 0
+	right: 0
+	border-top: 1px solid $fg-soft-edge
+	height: 5px
+	border-radius: 0px 0px $radius-small $radius-small
+
+.list-management
+	display: flex
+
+	.list-management-button
+		flex: 1
+
+.yes-script
+	text-align: center
+	font-size: 30px
+	font-weight: bold
+	line-height: 1
+	padding: 20px
+
+.no-script
+	padding: 25px
+	font-size: 30px
+	font-weight: bold
+	text-align: center
+	background-color: maroon
+	border-bottom: 4px solid black
+	color: white

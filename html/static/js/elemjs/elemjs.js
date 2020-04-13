@@ -3,6 +3,9 @@ export function q(s) {
 	return document.querySelector(s)
 }
 
+/**
+ * @template {HTMLElement} T
+ */
 export class ElemJS {
 	constructor(type) {
 		if (type instanceof HTMLElement) this.bind(type)
@@ -10,7 +13,7 @@ export class ElemJS {
 		this.children = [];
 	}
 	bind(element) {
-		/** @type {HTMLElement} */
+		/** @type {T} */
 		this.element = element
 		// @ts-ignore
 		this.element.js = this
@@ -55,9 +58,10 @@ export class ElemJS {
 	}
 	event(name, callback) {
 		this.element.addEventListener(name, event => callback(event))
+		return this
 	}
 	child(toAdd, position) {
-		if (typeof(toAdd) == "object") {
+		if (typeof toAdd === "object" && toAdd !== null) {
 			toAdd.parent = this;
 			if (typeof(position) == "number" && position >= 0) {
 				this.element.insertBefore(toAdd.element, this.element.children[position]);

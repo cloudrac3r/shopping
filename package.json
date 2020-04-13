@@ -11,6 +11,7 @@
   "license": "AGPL-3.0-only",
   "private": true,
   "dependencies": {
+    "better-sqlite3": "^6.0.1",
     "pinski": "github:cloudrac3r/pinski#237daf4cc542be91c7eca5a20c9f35d4082fc78d"
   }
 }

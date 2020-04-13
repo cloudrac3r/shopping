@@ -1,4 +1,9 @@
 const {Pinski} = require("pinski")
+const passthrough = require("./passthrough")
+const sqlite = require("better-sqlite3")
+
+const db = new sqlite("./db/shopping.db")
+passthrough.db = db
 
 const server = new Pinski({
 	relativeRoot: __dirname,
@@ -6,8 +11,10 @@ const server = new Pinski({
 	port: 10409
 })
 
-server.enableWS()
 server.startServer()
+server.enableWS()
+
+Object.assign(passthrough, server.getExports())
 
 server.addAPIDir("api")
 
