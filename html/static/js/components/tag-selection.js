@@ -58,6 +58,20 @@ class TagSelection extends ElemJS {
 			this.tags.push(tag)
 			this.child(tag)
 		}
+
+		document.addEventListener("keypress", event => {
+			// @ts-ignore
+			if (event.target.tagName !== "INPUT" && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+				const number = (+event.key) - 1
+				if (!isNaN(number)) {
+					if (number >= 0 && number < this.tags.length) {
+						store.set("defaultTag", this.tags[number])
+					} else {
+						store.set("defaultTag", null)
+					}
+				}
+			}
+		})
 	}
 
 	/**

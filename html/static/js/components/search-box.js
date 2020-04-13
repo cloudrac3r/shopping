@@ -13,6 +13,14 @@ class SearchBox extends ElemJS {
 				this.element.value = store.filter
 			}
 		})
+		document.addEventListener("keypress", event => {
+			// @ts-ignore
+			if (event.target.tagName !== "INPUT" && event.key === "s" && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+				event.preventDefault()
+				this.element.focus()
+				this.element.select()
+			}
+		})
 	}
 
 	onInput() {
