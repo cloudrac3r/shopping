@@ -2,10 +2,12 @@ import {store} from "../structures/Store.js"
 import {ElemJS, q} from "../elemjs/elemjs.js"
 
 const tags = new Map([
-	["blue", "#284acc"],
-	["red", "maroon"],
-	["orange", "#c17422"],
-	["pink", "#f048de"]
+	["yellow", "rgb(204, 186, 40)"],
+	["red", "#b41416"],
+	["green", "rgb(40, 134, 13)"],
+	["orange", "rgb(223, 135, 41)"],
+	["pink", "#f048de"],
+	["grey", "rgb(117, 117, 117)"]
 ])
 
 class Tag extends ElemJS {
