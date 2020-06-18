@@ -60,7 +60,7 @@ export class ElemJS {
 		this.element.addEventListener(name, event => callback(event))
 		return this
 	}
-	child(toAdd, position) {
+	child(toAdd, position = undefined) {
 		if (typeof toAdd === "object" && toAdd !== null) {
 			toAdd.parent = this;
 			if (typeof(position) == "number" && position >= 0) {
