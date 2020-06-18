@@ -12,6 +12,21 @@ ws.addEventListener("message", message => {
 	}
 })
 
+let websocketOk = true
+const websocketFailed = document.getElementById("websocket-failed")
+ws.addEventListener("close", () => {
+	if (!websocketOk) return
+	websocketOk = false
+	websocketFailed.textContent = "WebSocket disconnected. Reload the page."
+	websocketFailed.style.display = "block"
+})
+ws.addEventListener("error", () => {
+	if (!websocketOk) return
+	websocketOk = false
+	websocketFailed.textContent = "WebSocket connection error."
+	websocketFailed.style.display = "block"
+})
+
 function addWSListener(callback) {
 	listeners.push(callback)
 }
