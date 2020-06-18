@@ -22,7 +22,7 @@ html
 						input(type="text" placeholder="Search..." name="search" autocomplete="off").search-box#search-box
 					div.default-tag-flex#default-tag-flex
 						hr
-						//each c, i in ["#c17422", "maroon", "#284acc"]
+						//- each c, i in ["#c17422", "maroon", "#284acc"]
 							div.tag(class=i == 0 ? "selected" : null)
 								div.tag-inner(style=`background-color: ${c}`)
 				div
@@ -46,7 +46,7 @@ html
 					ul.item-list#item-list
 		div.context-menu-overlay.hidden#context-menu-overlay
 		div.context-menu-layer#context-menu-layer
-			//section.context-menu(style="top: 300px; left: 400px;")
+			//- section.context-menu(style="top: 300px; left: 400px;")
 				ul.menu-list
 					li.menu-item: button.menu-button One
 					li.menu-item: button.menu-button Two
