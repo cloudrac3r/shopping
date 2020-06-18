@@ -83,7 +83,7 @@ class ContextMenu extends ElemJS {
 			this.parts.list.child(
 				new ElemJS("li").class("menu-item").child(
 					option.type === "button"
-					? new ElemJS("button").class("menu-button").addText(text).event("click", () => option.fn(this))
+					? new ElemJS("button").class("menu-button", borderColor ? "has-border" : "").style("borderRightColor", borderColor).addText(text).event("click", () => option.fn(this))
 					: new ElemJS("div").class("menu-label").style("borderColor", borderColor).addText(text)
 				)
 			)

@@ -46,6 +46,7 @@ class ListItem extends ElemJS {
 
 	onRightClick(event) {
 		event.preventDefault()
+		/** @type {{text: (string|(() => string)), type: string, color?: string, fn?: (menu: ContextMenu) => void}[]} */
 		const options = [
 			{text: `${this.itemData.name} — Aisle ${this.itemData.aisle}`, type: "label"},
 			{text: "Search for this", type: "button", fn: menu => {
@@ -65,6 +66,7 @@ class ListItem extends ElemJS {
 		for (const tagName of tags.keys()) {
 			options.splice(3, 0, {
 				text: `Tag ${tagName}`,
+				color: tags.get(tagName),
 				type: "button",
 				fn: menu => {
 					store.list.tag(this.itemData.id, tagName)
