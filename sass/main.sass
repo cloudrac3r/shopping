@@ -13,8 +13,13 @@ $radius-small: 4px
 $layout-a-min-width: 700px
 $layout-b-max-width: 699px
 
+@font-face
+	font-family: "Bariol"
+	font-display: swap
+	src: url(/static/fonts/bariol.woff2) format("woff2"), url(/static/fonts/bariol.ttf) format("truetype")
+
 body
-	font-family: sans-serif
+	font-family: Bariol, sans-serif
 	font-size: 20px
 	background-color: $bg-main
 	color: $fg-main
@@ -33,7 +38,7 @@ input, button
 	border: 1px solid $fg-soft-edge
 	border-radius: $radius-small
 	background-color: $bg-bright
-	padding: 8px
+	padding: 6px 8px
 
 	&::placeholder
 		font-style: italic
