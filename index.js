@@ -17,7 +17,7 @@ server.enableWS()
 
 Object.assign(passthrough, server.getExports())
 
-server.pugDefaultLocals.isDevelopment = child_process.execSync("hostname", {encoding: "utf8"}) !== "cloudv"
+server.pugDefaultLocals.isDevelopment = child_process.execSync("hostname", {encoding: "utf8"}).trim() !== "cloudv"
 
 server.addAPIDir("api")
 
