@@ -12,7 +12,8 @@ class Preview extends ElemJS {
 
 	goto(x, y) {
 		this.style("display", "")
-		this.style("transform", `translate(${x+10}px, ${y+10}px)`)
+		this.element.style.left = Math.min(x+10, window.innerWidth-this.element.clientWidth-15)+"px"
+		this.element.style.top = Math.min(y+10, window.innerHeight-this.element.clientHeight-15)+"px"
 	}
 
 	hide() {
