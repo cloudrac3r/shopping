@@ -87,7 +87,7 @@ button, .link-button
 
 ul
 	margin: 0
-	padding: 0
+	padding: 0 0 0 2em
 
 .columns
 	box-sizing: border-box
@@ -109,6 +109,7 @@ ul
 	text-decoration: none
 
 =button-list
+	padding: 0
 	list-style-type: none
 	display: grid
 	grid-gap: $gap-size-tiny
@@ -415,15 +416,32 @@ button, a
 	.keyword-button
 		margin-right: 4px
 		line-height: 1
-		border: 1px solid $fg-soft-edge
 		padding: 6px 10px
 		border-radius: 50vh
-		background-color: white
 		font-size: 17px
-		cursor: pointer
 
-		/*
-			&:hover
-				border-color: #aaa
-				background: linear-gradient(to bottom, #fff 20%, #eee)
-				box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2)
+details
+	margin: 8px
+	padding: 8px
+	background-color: white
+	border: 1px solid #ccc
+	border-radius: $radius-small
+	font-size: 17px
+
+	summary
+		cursor: pointer
+		line-height: 1
+
+	&[open] summary
+		margin-bottom: 8px
+
+dl
+	margin: 0
+	display: grid
+	grid-template-columns: 25px 1fr
+
+	dd, dt
+		margin: 0
+
+	dt
+		text-align: center

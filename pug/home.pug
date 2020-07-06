@@ -34,8 +34,37 @@ html
 								div.tag-inner(style=`background-color: ${c}`)
 				div
 					ul.item-selection#item-selection
+				hr
+				details
+					summary Aisle summary
+					dl
+						dt 1
+						dd Breakfast, cereal, hot drink, canned fruit, shelf milk
+						dt 2
+						dd Pasta, rice, cans, juice, sauce, soup
+						dt 3
+						dd Beauty, hygiene, soap, toothpaste
+						dt 4
+						dd Pet food, cleaners, washing powder
+						dt 5
+						dd Frozen aisle 1, biscuits
+						dt 6
+						dd Frozen aisle 2, cheese
+						dt 7
+						dd Baking, soft drink, crisps, oil, spices, eggs
+						dt 8
+						dd Plastics, cloths, papers
+						dt 9
+						dd Bread
+						dt 10
+						dd Alcohol
+				details
+					summary Naming guide
+					ul
+						li Sentence case, not title case
+						li Put the main name at the start
+						li Brands and quantities in brackets at the end
 				.create-item-area
-					hr
 					div.create-item-container
 						input(placeholder="Aisle #" autocomplete="off").item-setting-input#create-item-aisle
 						input(placeholder="Price" autocomplete="off").item-setting-input#create-item-price
@@ -61,8 +90,3 @@ html
 					ul.item-list#item-list
 		div.context-menu-overlay.hidden#context-menu-overlay
 		div.context-menu-layer#context-menu-layer
-			//- section.context-menu(style="top: 300px; left: 400px;")
-				ul.menu-list
-					li.menu-item: button.menu-button One
-					li.menu-item: button.menu-button Two
-					li.menu-item: button.menu-button Three
