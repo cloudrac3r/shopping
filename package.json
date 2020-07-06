@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +13,8 @@
   "private": true,
   "dependencies": {
     "better-sqlite3": "^6.0.1",
-    "pinski": "github:cloudrac3r/pinski#237daf4cc542be91c7eca5a20c9f35d4082fc78d"
+    "fast-html-parser": "^1.0.1",
+    "node-fetch": "^2.6.0",
+    "pinski": "github:cloudrac3r/pinski#ffa2f36eee807a13dd1090717045f945a5d5e3d2"
   }
 }

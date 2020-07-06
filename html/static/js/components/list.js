@@ -13,7 +13,17 @@ class List extends ElemJS {
 
 	render() {
 		this.clearChildren()
-		const items = [...store.list.values()].sort((a, b) => store.items.get(a.item_id).aisle - store.items.get(b.item_id).aisle)
+		const items = [...store.list.values()].sort((a, b) => {
+			const itemA = store.items.get(a.item_id)
+			const itemB = store.items.get(b.item_id)
+			if (itemA.aisle !== itemB.aisle) {
+				return itemA.aisle - itemB.aisle
+			} else {
+				if (itemA.name < itemB.name) return -1
+				else if (itemB.name < itemA.name) return 1
+				else return 0
+			}
+		})
 		for (const item of items) {
 			this.child(
 				new ListItem(item.item_id)

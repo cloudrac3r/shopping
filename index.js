@@ -1,6 +1,7 @@
 const {Pinski} = require("pinski")
 const passthrough = require("./passthrough")
 const sqlite = require("better-sqlite3")
+const child_process = require("child_process")
 
 const db = new sqlite("./db/shopping.db")
 passthrough.db = db
@@ -15,6 +16,8 @@ server.startServer()
 server.enableWS()
 
 Object.assign(passthrough, server.getExports())
+
+server.pugDefaultLocals.isDevelopment = child_process.execSync("hostname", {encoding: "utf8"}) !== "cloudv"
 
 server.addAPIDir("api")
 

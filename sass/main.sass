@@ -26,13 +26,15 @@ body
 	min-height: 100vh
 	margin: 0
 	padding: 0
+	-webkit-touch-callout: none !important
+
 	@media only screen and (min-width: $layout-a-min-width)
 		display: grid
 
 	@media only screen and (max-width: $layout-b-max-width)
 		overflow-y: scroll
 
-input, button
+input, button, .link-button
 	font-family: inherit
 	font-size: inherit
 	border: 1px solid $fg-soft-edge
@@ -49,7 +51,7 @@ hr
 	padding: 0
 	margin: 18px 20px
 
-button
+button, .link-button
 	&:disabled
 		background-color: $bg-disabled
 
@@ -102,6 +104,10 @@ ul
 		.item-selection-container
 			order: 2
 
+.link-button
+	color: inherit
+	text-decoration: none
+
 =button-list
 	list-style-type: none
 	display: grid
@@ -110,14 +116,14 @@ ul
 	li
 		display: flex
 
-		button
+		button, .link-button
 			text-align: left
 			flex: 1
 
 .main-section
 	padding: $gap-size-medium
 	border: 1px solid $fg-soft-edge
-	border-radius: 8px
+	border-radius: $radius-large
 	background-color: $bg-main
 	box-shadow: 0px 4px 12px -2px rgba(0, 0, 0, 0.6)
 	overflow-y: scroll
@@ -171,7 +177,12 @@ ul
 			.item-setting-input
 				width: 85px
 
-			.create-item
+			.create-item-buttons
+				display: grid
+				grid-template-columns: 1fr 1fr
+				grid-gap: $gap-size-tiny
+
+			.create-item, .look-online-button
 				text-align: start
 
 .item-list
@@ -208,9 +219,48 @@ ul
 		font-style: italic
 		color: #060
 
+	.price
+		color: maroon
+
+		.mode
+			font-size: 0.8em
+			font-style: italic
+
+	.capacity
+		margin-right: 8px
+		color: #a539d7
+
 .item-list-key
 	display: flex
 	padding: 0px 8px 8px
+
+.online-item-list
+	margin: 8px
+	padding: 4px
+	border-radius: $radius-large
+
+	&.has-items
+		border: 2px solid #333
+
+	.item-list-button
+		overflow: hidden
+		text-overflow: ellipsis
+		height: 1.35em
+
+	.preview
+		position: absolute
+		top: 0
+		left: 0
+		pointer-events: none
+		border: 4px solid #111
+		border-radius: $radius-large
+		background: white
+
+		img
+			width: auto
+			height: auto
+			max-width: 200px
+			max-height: 200px
 
 .context-menu-overlay
 	position: fixed
@@ -350,3 +400,30 @@ ul
 	background-color: maroon
 	border-bottom: 4px solid black
 	color: white
+
+button, a
+	-webkit-user-select: none !important
+
+.keyword-list
+	display: flex
+	list-style-type: none
+	margin: 8px
+	overflow-x: auto
+	scrollbar-width: thin
+	padding-bottom: 3px
+
+	.keyword-button
+		margin-right: 4px
+		line-height: 1
+		border: 1px solid $fg-soft-edge
+		padding: 6px 10px
+		border-radius: 50vh
+		background-color: white
+		font-size: 17px
+		cursor: pointer
+
+		/*
+			&:hover
+				border-color: #aaa
+				background: linear-gradient(to bottom, #fff 20%, #eee)
+				box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2)

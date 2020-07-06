@@ -39,6 +39,11 @@ class Item extends ElemJS {
 		event.preventDefault()
 		const menu = new ContextMenu([
 			{text: () => `${this.data.name} × ${this.getCount()}`, type: "label"},
+			{text: "Search for this", type: "button", fn: menu => {
+				store.set("filterUpdatedBy", "item context menu")
+				store.set("filter", this.data.name)
+				menu.close()
+			}},
 			{text: "Add 1", type: "button", fn: menu => {
 				store.list.add(this.data.id, 1, store.defaultTag)
 			}},

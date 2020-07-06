@@ -67,4 +67,14 @@
  * @typedef {import("./html/static/js/elemjs/elemjs").ElemJS & ElemJSComponent_Additions} ElemJSComponent
  */
 
+/**
+ * @typedef OnlineListItem
+ * @property {string} name
+ * @property {number} price
+ * @property {string} priceMode
+ * @property {string} capacity
+ * @property {string} href
+ * @property {string} image
+ */
+
 module.exports = {}
