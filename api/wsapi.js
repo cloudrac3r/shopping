@@ -107,6 +107,13 @@ class Client {
 					data: null
 				})
 			}
+			else if (message.event === "CLEAR_COMPLETED") {
+				db.prepare("DELETE FROM List WHERE complete = 1").run()
+				broadcast({
+					event: "CLEAR_COMPLETED",
+					data: null
+				})
+			}
 
 		})
 

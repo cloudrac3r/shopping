@@ -111,6 +111,17 @@ class ListStore extends BaseStore {
 			this.updateParent()
 		})
 
+		addWSEventListener("CLEAR_COMPLETED", () => {
+			for (const [key, item] of this.backing.entries()) {
+				if (item.complete) {
+					this.backing.delete(key)
+				}
+			}
+			this.updateAny()
+			this.updateCompleted()
+			this.updateParent()
+		})
+
 		addWSEventListener("DELETE_ITEM",
 			/**
 			 * @param {import("../../../../types").Event_DELETE_ITEM} data
@@ -190,6 +201,13 @@ class ListStore extends BaseStore {
 	clear() {
 		send({
 			event: "CLEAR_LIST",
+			data: null
+		})
+	}
+
+	clearCompleted() {
+		send({
+			event: "CLEAR_COMPLETED",
 			data: null
 		})
 	}

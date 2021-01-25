@@ -13,7 +13,11 @@ class ClearList extends ElemJS {
 		event.preventDefault()
 		new ContextMenu([
 			{text: "Really clear the list?\nThere's no going back.", color: "#bd1919", type: "label"},
-			{text: "Yeah do it", type: "button", fn: menu => {
+			{text: "Remove completed", type: "button", fn: menu => {
+				store.list.clearCompleted()
+				menu.close()
+			}},
+			{text: "Clear entire list", type: "button", fn: menu => {
 				store.list.clear()
 				menu.close()
 			}}
