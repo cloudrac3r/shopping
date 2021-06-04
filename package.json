@@ -13,8 +13,9 @@
   "private": true,
   "dependencies": {
     "better-sqlite3": "^6.0.1",
+    "entities": "^2.2.0",
     "fast-html-parser": "^1.0.1",
     "node-fetch": "^2.6.1",
-    "pinski": "github:cloudrac3r/pinski#ffa2f36eee807a13dd1090717045f945a5d5e3d2"
+    "pinski": "git+https://git.sr.ht/~cadence/nodejs-pinski#2a5a025a974bd5cbb81bae32ec4d5c247cec0d42"
   }
 }
