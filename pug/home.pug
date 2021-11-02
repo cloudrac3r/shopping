@@ -1,92 +1,97 @@
 doctype html
 html
-	head
-		meta(charset="utf-8")
-		title
-			if isDevelopment
-				| [ DEVELOPMENT ] - Shopping List
-			else
-				| Shopping List
-		meta(name="viewport" content="width=device-width, initial-scale=1")
-		link(rel="stylesheet" type="text/css" href="/static/css/main.css")
-		script(type="module" src="/static/js/index.js")
+  head
+    meta(charset="utf-8")
+    title
+      if isDevelopment
+        | [ DEVELOPMENT ] - Shopping List
+      else
+        | Shopping List
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" type="text/css" href="/static/css/main.css")
+    script(type="module" src="/static/js/index.js")
 
-	body
-		section.websocket-failed.top-alert#websocket-failed
-		if isDevelopment
-			section.top-alert This is the development site.
-		noscript
-			section.no-script.top-alert
-				| Enable JavaScript.
-			style.
-				.yes-script {
-					display: none;
-				}
-		main.columns
-			section.main-section.item-selection-container
-				.sticky-search
-					div.search-container
-						input(type="text" placeholder="Search..." name="search" autocomplete="off").search-box#search-box
-					div.default-tag-flex#default-tag-flex
-						hr
-						//- each c, i in ["#c17422", "maroon", "#284acc"]
-							div.tag(class=i == 0 ? "selected" : null)
-								div.tag-inner(style=`background-color: ${c}`)
-				div
-					ul.item-selection#item-selection
-				hr
-				details
-					summary Aisle summary
-					dl
-						dt 1
-						dd Breakfast, cereal, hot drink, canned fruit, shelf milk
-						dt 2
-						dd Pasta, rice, cans, juice, sauce, soup
-						dt 3
-						dd Beauty, hygiene, soap, toothpaste
-						dt 4
-						dd Pet food, cleaners, washing powder
-						dt 5
-						dd Frozen aisle 1, biscuits
-						dt 6
-						dd Frozen aisle 2, cheese
-						dt 7
-						dd Baking, soft drink, crisps, oil, spices, eggs
-						dt 8
-						dd Plastics, cloths, papers
-						dt 9
-						dd Bread
-						dt 10
-						dd Alcohol
-				details
-					summary Naming guide
-					ul
-						li Put the main name at the start, like #[strong.example Chocolate (dark)] rather than #[strong.example Dark chocolate]
-						li Use sentence case, don't use title case (#[a(href="https://blog.prototypr.io/sentence-case-or-title-case-5bd581f05d88") explanation])
-						li Brands and quantities in brackets at the end, like #[strong.example Milk (Pam's, 3L)]
-				.create-item-area
-					div.create-item-container
-						input(placeholder="Aisle #" autocomplete="off").item-setting-input#create-item-aisle
-						input(placeholder="Price" autocomplete="off").item-setting-input#create-item-price
-						.create-item-buttons
-							button(disabled autocomplete="off").create-item#create-item Create this item
-							button(disabled autocomplete="off").look-online-button#look-online-button Look online
-				ul.keyword-list#keyword-list
-				ul.item-list.online-item-list#online-list
-				div.section-bottom-padding
+  body
+    section.websocket-failed.top-alert#websocket-failed
+    if isDevelopment
+      section.top-alert This is the development site.
+    noscript
+      section.no-script.top-alert
+        | Enable JavaScript.
+      style.
+        .yes-script {
+          display: none;
+        }
+    main.columns
+      section.main-section.item-selection-container
+        .sticky-search
+          div.search-container
+            input(type="text" placeholder="Search..." name="search" autocomplete="off").search-box#search-box
+          div.default-tag-flex#default-tag-flex
+            hr
+            //- each c, i in ["#c17422", "maroon", "#284acc"]
+              div.tag(class=i == 0 ? "selected" : null)
+                div.tag-inner(style=`background-color: ${c}`)
+        div
+          ul.item-selection#item-selection
+        hr
+        details
+          summary Aisle summary
+          dl
+            dt 1
+            dd Breakfast, cereal, hot drink, canned fruit, shelf milk
+            dt 2
+            dd Pasta, rice, cans, juice, sauce, soup
+            dt 3
+            dd Beauty, hygiene, soap, toothpaste
+            dt 4
+            dd Pet food, cleaners, washing powder
+            dt 5
+            dd Frozen aisle 1, biscuits
+            dt 6
+            dd Frozen aisle 2, cheese
+            dt 7
+            dd Baking, soft drink, crisps, oil, spices, eggs
+            dt 8
+            dd Plastics, cloths, papers
+            dt 9
+            dd Bread
+            dt 10
+            dd Alcohol
+        details
+          summary Naming guide
+          ul
+            li Put the main name at the start, like #[strong.example Chocolate (dark)] rather than #[strong.example Dark chocolate]
+            li Use sentence case, don't use title case (#[a(href="https://blog.prototypr.io/sentence-case-or-title-case-5bd581f05d88") explanation])
+            li Brands and quantities in brackets at the end, like #[strong.example Milk (Pam's, 3L)]
+        .create-item-area
+          div.create-item-container
+            input(placeholder="Aisle #" autocomplete="off").item-setting-input#create-item-aisle
+            input(placeholder="Price" autocomplete="off").item-setting-input#create-item-price
+            .create-item-buttons
+              button(disabled autocomplete="off").create-item#create-item Create this item
+              button(disabled autocomplete="off").look-online-button#look-online-button Look online
+        ul.keyword-list#keyword-list
+        ul.item-list.online-item-list#online-list
+        div.section-bottom-padding
 
-			div.main-section
-				section.summary#summary
-					.yes-script
-						| Loading...
-				section.list-management
-					button.list-management-button#clear-list Clear list
-				hr
-				section
-					.item-list-key
-						span.name Item name
-						span.aisle Aisle
-						span.quantity Quantity
-					ul.item-list#item-list
-		div.context-menu-overlay.hidden#context-menu-overlay
-		div.context-menu-layer#context-menu-layer
+      div.main-section
+        section.summary#summary
+          .yes-script
+            | Loading...
+        section.list-management
+          button.list-management-button#clear-list Clear list
+        section.required-items#required-item-section
+          hr
+          details.required-items__notice
+            summary Some required items are not on the list.
+            ul.item-list#required-item-list
+          hr
+        section.right-item-list-container
+          .item-list-key
+            span.name Item name
+            span.aisle Aisle
+            span.quantity Quantity
+          ul.item-list#item-list
+    div.context-menu-overlay.hidden#context-menu-overlay
+    div.context-menu-layer#context-menu-layer

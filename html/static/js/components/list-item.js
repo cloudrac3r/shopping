@@ -90,16 +90,18 @@ class ListItem extends ElemJS {
 
 	render() {
 		this.getData()
-		if (this.data.complete) this.parts.button.class("complete")
-		else this.parts.button.removeClass("complete")
-		this.parts.name.text(this.itemData.name)
-		this.parts.aisle.text(this.itemData.aisle)
-		this.parts.quantity.text("x"+this.data.quantity)
-		if (this.data.tag) {
-			this.parts.tag.removeClass("hidden")
-			this.parts.tagInner.element.style.backgroundColor = tags.get(this.data.tag)
-		} else {
-			this.parts.tag.class("hidden")
+		if (this.data && this.itemData) { // the item will have its data removed immediately before it is removed from the dom
+			if (this.data.complete) this.parts.button.class("complete")
+			else this.parts.button.removeClass("complete")
+			this.parts.name.text(this.itemData.name)
+			this.parts.aisle.text(`|${this.itemData.aisle}|`)
+			this.parts.quantity.text("x"+this.data.quantity)
+			if (this.data.tag) {
+				this.parts.tag.removeClass("hidden")
+				this.parts.tagInner.element.style.backgroundColor = tags.get(this.data.tag)
+			} else {
+				this.parts.tag.class("hidden")
+			}
 		}
 	}
 }

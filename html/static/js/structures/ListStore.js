@@ -23,6 +23,7 @@ class ListStore extends BaseStore {
 			data => {
 				for (const item of data.list) {
 					this.backing.set(item.item_id, item)
+					this.update(item.item_id)
 				}
 				this.updateCompleted()
 				this.updateParent()
@@ -45,6 +46,7 @@ class ListStore extends BaseStore {
 						tag: data.tag
 					})
 				}
+				this.update(data.id)
 				this.updateCompleted()
 				this.updateParent()
 				this.updateAny()
@@ -62,6 +64,7 @@ class ListStore extends BaseStore {
 					} else {
 						this.backing.get(data.id).quantity -= data.count
 					}
+					this.update(data.id)
 					this.updateCompleted()
 					this.updateParent()
 					this.updateAny()
@@ -105,7 +108,11 @@ class ListStore extends BaseStore {
 		)
 
 		addWSEventListener("CLEAR_LIST", () => {
+			const currentKeys = [...this.backing.keys()]
 			this.backing.clear()
+			for (const key of currentKeys) {
+				this.update(key)
+			}
 			this.updateAny()
 			this.updateCompleted()
 			this.updateParent()
@@ -115,6 +122,7 @@ class ListStore extends BaseStore {
 			for (const [key, item] of this.backing.entries()) {
 				if (item.complete) {
 					this.backing.delete(key)
+					this.update(key)
 				}
 			}
 			this.updateAny()

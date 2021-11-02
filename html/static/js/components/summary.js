@@ -74,7 +74,7 @@ class PriceList extends ElemJS {
 		tree.forEach((branch, index) => {
 			const last = index === tree.length-1
 			let prefix = last ? "└" : "├"
-			prefix += branch.special ? "➤" : "╴"
+			prefix += branch.special ? "➤" : "─"
 			this.child(
 				new ElemJS("span").class("border").addText(prefix)
 			)

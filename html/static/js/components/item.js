@@ -15,14 +15,28 @@ class Item extends ElemJS {
 			button:
 				new ElemJS("button").class("item-line").child(
 					new ElemJS("div").addText(data.name).class("name")
-				).child(
-					data.price && new ElemJS("div").addText(data.price.toFixed(2)).class("price")
-				)
+				),
+			price: data.price && new ElemJS("div").addText(data.price.toFixed(2)).class("price"),
+			quantity: new ElemJS("div").class("quantity")
 		}
+		this.parts.button.child(this.parts.quantity)
+		this.parts.button.child(this.parts.price)
 		this.child(this.parts.button)
 
 		this.event("click", this.onClick.bind(this))
 		this.event("contextmenu", this.onRightClick.bind(this))
+		store.list.bindElement(this.data.id, this)
+		this.render()
+	}
+
+	render() {
+		const count = this.getCount()
+		if (count) {
+			this.parts.quantity.text("x" + count)
+			this.parts.button.class("has-quantity")
+		} else {
+			this.parts.button.removeClass("has-quantity")
+		}
 	}
 
 	getCount() {
